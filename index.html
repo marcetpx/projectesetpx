@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROJECTES ETPX</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #192b54;
+      --color-primary-light: #2a3f6f;
+      --color-secondary: #9DB51F;
+      --color-secondary-light: #b0d025;
+      --color-white: #ffffff;
+      --color-dark: #1a1a1a;
+      --color-surface: #ffffff;
+      --color-background: #f8f9fa;
+      --color-on-surface: #333333;
+      --color-on-primary: #ffffff;
+      --spacing-xs: 1rem;
+      --spacing-sm: 1.5rem;
+      --spacing-md: 2rem;
+      --spacing-lg: 3rem;
+      --spacing-xl: 5rem;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      --shadow-md: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+      --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.10);
+      --shadow-xl: 0 15px 25px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 62.5%;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.6rem;
+      line-height: 1.6;
+      background: var(--color-background);
+      color: var(--color-on-surface);
+    }
+
+    /* Navegación mejorada con Material Design */
+    .nav-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--color-primary);
+      box-shadow: var(--shadow-lg);
+      z-index: 1000;
+      padding: 1.5rem 5%;
+    }
+
+    .nav-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+      color: var(--color-white);
+      font-size: 2.2rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+    }
+
+    .brand:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--color-white);
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      padding: 0.8rem 1.6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--color-secondary);
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    /* ESTILOS DEL BOTÓN AÑADIR NUEVO */
+    .add-btn {
+      background: var(--color-secondary);
+      color: var(--color-white);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 2.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-left: 1rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .add-btn:hover {
+      background: var(--color-secondary-light);
+      transform: scale(1.1);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Breadcrumb mejorado */
+    .breadcrumb {
+      margin-top: 100px;
+      padding: 1.5rem 5%;
+      background: var(--color-surface);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .breadcrumb-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1.4rem;
+      color: #666;
+    }
+
+    .breadcrumb a {
+      color: var(--color-primary);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0 0.5rem;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--color-secondary);
+      background: rgba(157, 181, 31, 0.1);
+    }
+
+    /* Contenedor principal */
+    .main-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: var(--spacing-lg) 5%;
+      min-height: calc(100vh - 300px);
+    }
+
+    /* Vista de inicio mejorada */
+    .home-view {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .cicle-card {
+      position: relative;
+      height: 350px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      background: var(--color-surface);
+    }
+
+    .cicle-card:hover {
+      box-shadow: var(--shadow-xl);
+    }
+
+    .cicle-card-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: grayscale(0);
+      transition: filter 0.3s ease;
+    }
+
+    .cicle-card:hover .cicle-card-bg {
+      filter: grayscale(100%);
+    }
+
+    .cicle-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(25, 43, 84, 0.85));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .cicle-card h2 {
+      color: white;
+      font-size: 2.4rem;
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+    }
+
+    /* Vista de detalle mejorada */
+    .detail-view {
+      animation: slideIn 0.5s ease;
+    }
+
+    .detail-header {
+      text-align: center;
+      margin-bottom: var(--spacing-lg);
+      padding: var(--spacing-md);
+      background: var(--color-surface);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .detail-header h1 {
+      font-size: 3.6rem;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+      font-weight: 700;
+    }
+
+    .detail-header h1::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--color-secondary);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .project-card {
+      height: 300px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      cursor: pointer;
+      filter: grayscale(0);
+      transition: filter 0.3s ease;
+    }
+
+    .project-card:hover {
+      box-shadow: var(--shadow-lg);
+      filter: grayscale(100%);
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6));
+    }
+
+    .project-info {
+      background: var(--color-surface);
+      padding: var(--spacing-lg);
+      box-shadow: var(--shadow-md);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .project-info:hover {
+      box-shadow: var(--shadow-lg);
+    }
+
+    .project-info h2 {
+      font-size: 2.8rem;
+      color: var(--color-primary);
+      margin-bottom: var(--spacing-md);
+      text-transform: uppercase;
+      font-weight: 600;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .project-info h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--color-secondary);
+    }
+
+    .project-content {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: var(--spacing-md);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+      box-shadow: var(--shadow-sm);
+      filter: grayscale(0);
+      transition: filter 0.3s ease;
+    }
+
+    .project-image:hover {
+      box-shadow: var(--shadow-md);
+      filter: grayscale(100%);
+    }
+
+    .project-text {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--spacing-md);
+      align-content: start;
+    }
+
+    .project-text p {
+      font-size: 1.6rem;
+      line-height: 1.8;
+      text-align: justify;
+      color: var(--color-on-surface);
+    }
+
+    /* ESTILOS DEL MODAL */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 2000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    .modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background-color: var(--color-surface);
+      width: 90%;
+      max-width: 600px;
+      padding: 3rem;
+      border-radius: 4px;
+      box-shadow: var(--shadow-xl);
+      position: relative;
+      transform: translateY(-20px);
+      transition: transform 0.3s;
+    }
+
+    .modal.active .modal-content {
+      transform: translateY(0);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-size: 2.5rem;
+      color: var(--color-on-surface);
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .close-modal:hover {
+      color: var(--color-secondary);
+    }
+
+    .modal h2 {
+      color: var(--color-primary);
+      margin-bottom: 2rem;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 2.2rem;
+      border-bottom: 2px solid var(--color-secondary);
+      padding-bottom: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--color-primary);
+      font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 1.5rem;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1.2rem;
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      font-size: 1.6rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: background 0.3s;
+    }
+
+    .submit-btn:hover {
+      background: var(--color-secondary);
+    }
+
+    .login-message {
+      text-align: center;
+      color: #d9534f;
+      margin-top: 1rem;
+      font-size: 1.4rem;
+      display: none;
+    }
+
+    /* Footer mejorado */
+    .footer {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+      color: white;
+      padding: var(--spacing-lg) 5%;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-md);
+    }
+
+    .footer h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .footer p {
+      font-size: 1.4rem;
+      margin: 0.5rem 0;
+      opacity: 0.9;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 2rem;
+    }
+
+    .social-icons a:hover {
+      background: var(--color-secondary);
+      color: white;
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Botón de volver */
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.5rem;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .back-button:hover {
+      background: var(--color-primary-light);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Animaciones mejoradas */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Ocultar vistas */
+    .hidden {
+      display: none !important;
+    }
+
+    /* Loading mejorado */
+    .loading {
+      text-align: center;
+      padding: 5rem;
+      font-size: 2rem;
+      color: var(--color-primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(25, 43, 84, 0.2);
+      border-top: 5px solid var(--color-primary);
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Responsive mejorado */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      /* Permitir ver el botón + en móvil aunque el menú se oculte, opcionalmente */
+      .nav-content {
+        position: relative;
+      }
+
+      .add-btn {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+      }
+
+      .detail-header h1 {
+        font-size: 2.8rem;
+      }
+
+      .home-view {
+        grid-template-columns: 1fr;
+      }
+
+      .project-info h2 {
+        font-size: 2.4rem;
+      }
+
+      .brand {
+        font-size: 1.8rem;
+      }
+
+      .project-content {
+        grid-template-columns: 1fr;
+      }
+
+      .project-text {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .detail-header h1 {
+        font-size: 2.4rem;
+      }
+
+      .project-info h2 {
+        font-size: 2rem;
+      }
+
+      .cicle-card h2 {
+        font-size: 2rem;
+      }
+
+      .main-container {
+        padding: var(--spacing-md) 5%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav-bar">
+    <div class="nav-content">
+      <div class="brand" onclick="router.navigateTo('home')">
+        <span>🎓</span>
+        <span>ETP XAVIER</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#" onclick="router.navigateTo('home')" class="active">PROJECTES</a></li>
+        <li><button class="add-btn" onclick="modalController.open()" title="Afegir Nou Projecte">+</button></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="breadcrumb" id="breadcrumb">
+    <div class="breadcrumb-content">
+      <a href="#" onclick="router.navigateTo('home')">Inici</a>
+      <span id="breadcrumb-separator" class="hidden">›</span>
+      <span id="breadcrumb-current"></span>
+    </div>
+  </div>
+
+  <main class="main-container" id="app"></main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div>
+        <h3>ETP XAVIER</h3>
+        <p>Av. de Francesc Cambó, 12</p>
+        <p>Telèfon: 93 319 17 00</p>
+      </div>
+      <div>
+        <h3>Segueix-nos!</h3>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-behance"></i></a>
+          <a href="#"><i class="fab fa-dribbble"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="login-modal" class="modal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="authController.close()">&times;</button>
+      <h2>Accés Administrador</h2>
+      <form id="login-form" onsubmit="authController.login(event)">
+        <div class="form-group">
+          <label for="username">Usuari</label>
+          <input type="text" id="username" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="password">Contrasenya</label>
+          <input type="password" id="password" required autocomplete="current-password">
+        </div>
+        <div id="login-error" class="login-message">Usuari o contrasenya incorrectes</div>
+        <button type="submit" class="submit-btn">Entrar</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="project-modal" class="modal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="modalController.close()">&times;</button>
+      <h2>Afegir Nou Projecte</h2>
+      <form id="add-project-form" onsubmit="modalController.submit(event)">
+        <div class="form-group">
+          <label for="category-select">Especialitat</label>
+          <select id="category-select" required>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="project-title">Títol del Projecte</label>
+          <input type="text" id="project-title" placeholder="Ex: Projecte Logística" required>
+        </div>
+        <div class="form-group">
+          <label for="project-image">URL Imatge</label>
+          <input type="url" id="project-image" placeholder="https://..." required>
+        </div>
+        <div class="form-group">
+          <label for="project-desc">Descripció</label>
+          <textarea id="project-desc" placeholder="Descripció del projecte..." required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Guardar Projecte</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Configuració del Login
+    const authConfig = {
+      user: "admin",
+      pass: "Etpx$2025",
+      isLoggedIn: false
+    };
+
+    // Controlador d'Autenticació
+    const authController = {
+      modal: document.getElementById('login-modal'),
+      errorMsg: document.getElementById('login-error'),
+
+      open() {
+        this.modal.classList.add('active');
+        this.errorMsg.style.display = 'none';
+      },
+
+      close() {
+        this.modal.classList.remove('active');
+        document.getElementById('login-form').reset();
+      },
+
+      login(event) {
+        event.preventDefault();
+        const user = document.getElementById('username').value;
+        const pass = document.getElementById('password').value;
+
+        if (user === authConfig.user && pass === authConfig.pass) {
+          authConfig.isLoggedIn = true;
+          this.close();
+          // Si el login es correcte, obrim directament el modal de projectes
+          modalController.open();
+        } else {
+          this.errorMsg.style.display = 'block';
+          // Animació de "sacsejada" si es volgués afegir
+        }
+      }
+    };
+
+    // Base de datos de contenido
+    const projectsData = {
+      comerc: {
+        title: "COMERÇ INTERNACIONAL",
+        image: "images/comerc.jpg",
+        projects: [
+          {
+            id: "cava",
+            title: "PROJECTE CAVA",
+            image: "images/cava1.jpg",
+            images: ["images/cava1.jpg", "images/cava2.jpg", "images/cava3.jpg"],
+            content: [
+              "Un celler del Penedès productor de Cava va començar ara fa 20 anys produint i venent cava a Catalunya. Des del 2010, va començar a vendre a la resta d'Espanya; i ja al 2014 es va atrevir amb el mercat europeu. Ara, al 2023 i quan el pitjor de la pandèmia sembla que ja ha passat, s'està plantejant exportar cava a Àsia i/o Oceania. Amb aquest objectiu han buscat experts en comerç internacional i en el mercat del cava a Àsia/Oceania per a que elaborin un estudi complet que els orienti i els serveixi com a pauta per a l'expansió. Aquest estudi haurà d'incloure: una prospecció i anàlisi de mercat; la informació sobre la gestió administrativa, comercial i logística necessària per a l'exportació, així com accions de comunicació digital per donar-se a conèixer en aquest nou mercat. L'empresa vitivinícola que us fa l'encàrrec és conscient que, per posicionar-se al mercat asiàtic i d'Oceania, caldrà fer una nova identitat corporativa (nom, marca, logos, varietats de cava, etc.) específica per a l'exportació a aquests continents. També, la creació d'una nova empresa filial, per a gestionar aquest mercat. A partir de la guia 'Treball cooperatiu: L'exportació de cava a Àsia' elaboreu l'informe que haureu de presentar als responsables del celler."
+            ]
+          },
+          {
+            id: "port",
+            title: "PROJECTE PORT",
+            image: "images/port1.jpg",
+            images: ["images/port1.jpg", "images/port2.jpg"],
+            content: [
+              "Un celler del Penedès productor de Cava va començar ara fa 20 anys produint i venent cava a Catalunya. Des del 2010, va començar a vendre a la resta d'Espanya; i ja al 2014 es va atrevir amb el mercat europeu.",
+              "Ara, al 2023 i quan el pitjor de la pandèmia sembla que ja ha passat, s'està plantejant exportar cava a Àsia i/o Oceania.",
+              "Aquest projecte inclou l'anàlisi del transport marítim i la logística internacional necessària per a l'exportació."
+            ]
+          }
+        ]
+      },
+      adifin: {
+        title: "ADMINISTRACIÓ I FINANCES",
+        image: "images/etiques1.jpg",
+        projects: [
+          {
+            id: "etiques",
+            title: "PROJECTE ETIQUETES",
+            image: "images/etiques1.jpg",
+            images: ["images/etiques1.jpg", "images/etiques2.jpg", "images/etiques3.jpg"],
+            content: [
+              "Projecte d'administració i gestió financera centrat en l'anàlisi de costos i pressupostos.",
+              "Desenvolupament de sistemes de control financer i comptabilitat analítica.",
+              "Implementació de processos administratius eficients."
+            ]
+          }
+        ]
+      },
+      gestio: {
+        title: "GESTIÓ ADMINISTRATIVA",
+        image: "images/gestio.jpg",
+        projects: [
+          {
+            id: "gestio1",
+            title: "PROJECTE GESTIÓ",
+            image: "images/gestio1.jpg",
+            images: ["images/gestio1.jpg", "images/gestio2.jpg", "images/gestio3.jpg"],
+            content: [
+              "Gestió documental i arxiu d'empresa.",
+              "Desenvolupament de protocols administratius.",
+              "Optimització de processos de gestió interna."
+            ]
+          }
+        ]
+      },
+      cai: {
+        title: "CAI",
+        image: "images/CAI1.jpg",
+        projects: [
+          {
+            id: "cai1",
+            title: "PROJECTE CAI",
+            image: "images/CAI1.jpg",
+            images: ["images/CAI1.jpg"],
+            content: [
+              "Projecte de conducta d'activitats d'allotjament i interacció.",
+              "Gestió hotelera i turística.",
+              "Desenvolupament de competències en el sector turístic."
+            ]
+          }
+        ]
+      },
+      farmacia: {
+        title: "FARMÀCIA",
+        image: "images/farmacia1.jpg",
+        projects: [
+          {
+            id: "farmacia1",
+            title: "PROJECTE FARMÀCIA",
+            image: "images/farmacia1.jpg",
+            images: ["images/farmacia1.jpg"],
+            content: [
+              "Gestió de farmàcia i parafarmàcia.",
+              "Control de medicaments i productes sanitaris.",
+              "Atenció farmacèutica al client."
+            ]
+          }
+        ]
+      },
+      dietetica: {
+        title: "DIETÈTICA",
+        image: "images/cobeer1.jpg",
+        projects: [
+          {
+            id: "cobeer",
+            title: "PROJECTE DIETÈTIC",
+            image: "images/cobeer1.jpg",
+            images: ["images/cobeer1.jpg", "images/cobeer2.jpg", "images/cobeer3.jpg"],
+            content: [
+              "Elaboració de plans dietètics personalitzats.",
+              "Nutrició i dietoteràpia.",
+              "Educació nutricional i promoció de la salut."
+            ]
+          }
+        ]
+      },
+      infantil: {
+        title: "EDUCACIÓ INFANTIL",
+        image: "images/infantil1.jpg",
+        projects: [
+          {
+            id: "infantil1",
+            title: "PROJECTE INFANTIL",
+            image: "images/infantil1.jpg",
+            images: ["images/infantil1.jpg"],
+            content: [
+              "Desenvolupament de projectes educatius per a primera infància.",
+              "Metodologies d'aprenentatge actiu.",
+              "Atenció a la diversitat en educació infantil."
+            ]
+          }
+        ]
+      },
+      daw: {
+        title: "DESENVOLUPAMENT APPS WEB",
+        image: "images/daw1.jpg",
+        projects: [
+          {
+            id: "daw1",
+            title: "PROJECTE WEB",
+            image: "images/daw1.jpg",
+            images: ["images/daw1.jpg"],
+            content: [
+              "Desenvolupament d'aplicacions web amb tecnologies modernes.",
+              "Frontend i Backend development.",
+              "Bases de dades i arquitectura web."
+            ]
+          },
+          {
+            id: "daw1",
+            title: "PROJECTE WEB",
+            image: "images/daw1.jpg",
+            images: ["images/daw1.jpg"],
+            content: [
+              "Desenvolupament d'aplicacions web amb tecnologies modernes.",
+              "Frontend i Backend development.",
+              "Bases de dades i arquitectura web."
+            ]
+          },
+
+        ]
+      },
+      batxi: {
+        title: "BATXILLERAT",
+        image: "images/hort1.jpg",
+        projects: [
+          {
+            id: "batxi1",
+            title: "PROJECTE DE RECERCA",
+            image: "images/hort4.jpg",
+            images: ["images/hort4.jpg"],
+            content: [
+              "Projectes de recerca interdisciplinaris.",
+              "Metodologia científica i treball experimental.",
+              "Presentació de treballs acadèmics."
+            ]
+          }
+        ]
+      }
+    };
+
+    // Router simple
+    const router = {
+      currentView: 'home',
+      currentCicle: null, // Guardamos dónde estamos
+
+      navigateTo(view, cicleId = null) {
+        this.currentView = view;
+        this.currentCicle = cicleId;
+
+        if (view === 'home') {
+          this.renderHome();
+          this.updateBreadcrumb('');
+        } else if (view === 'detail' && cicleId) {
+          this.renderDetail(cicleId);
+          this.updateBreadcrumb(projectsData[cicleId]?.title || '');
+        }
+
+        window.scrollTo(0, 0);
+      },
+
+      updateBreadcrumb(current) {
+        const separator = document.getElementById('breadcrumb-separator');
+        const currentSpan = document.getElementById('breadcrumb-current');
+
+        if (current) {
+          separator.classList.remove('hidden');
+          currentSpan.textContent = current;
+          currentSpan.classList.remove('hidden');
+        } else {
+          separator.classList.add('hidden');
+          currentSpan.classList.add('hidden');
+        }
+      },
+
+      renderHome() {
+        const app = document.getElementById('app');
+        // Generamos la lista basada en las claves de projectsData para que sea dinámico si añadimos categorías nuevas
+        const cicleIds = Object.keys(projectsData);
+
+        app.innerHTML = `
+          <div class="home-view">
+            ${cicleIds.map(id => {
+          const cicle = projectsData[id];
+          return `
+              <div class="cicle-card" onclick="router.navigateTo('detail', '${id}')">
+                <div class="cicle-card-bg" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('${cicle.image}')"></div>
+                <div class="cicle-card-overlay">
+                  <h2>${cicle.title}</h2>
+                </div>
+              </div>
+            `}).join('')}
+          </div>
+        `;
+      },
+
+      renderDetail(cicleId) {
+        const app = document.getElementById('app');
+        const data = projectsData[cicleId];
+
+        if (!data) {
+          app.innerHTML = '<div class="loading">Cicle no trobat</div>';
+          return;
+        }
+
+        // Si hay proyectos, usamos sus imágenes para el header, si no, placeholder
+        const headerImages = data.projects.length > 0 && data.projects[0].images
+          ? data.projects[0].images
+          : [data.image];
+
+        app.innerHTML = `
+          <div class="detail-view">
+            <button class="back-button" onclick="router.navigateTo('home')">
+              <i class="fas fa-arrow-left"></i> Tornar a l'inici
+            </button>
+            
+            <div class="detail-header">
+              <h1>${data.title}</h1>
+            </div>
+            
+            <div class="projects-grid">
+              ${headerImages.map(img => `
+                <div class="project-card" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('${img}')"></div>
+              `).join('')}
+            </div>
+            
+            ${data.projects.length === 0 ? '<p style="text-align:center">No hi ha projectes encara.</p>' : ''}
+
+            ${data.projects.map(project => `
+              <div class="project-info">
+                <h2>${project.title}</h2>
+                <div class="project-content">
+                  <div class="project-image" style="background-image: url('${project.image}')"></div>
+                  <div class="project-text">
+                    ${project.content.map(p => `<p>${p}</p>`).join('')}
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+    };
+
+    // Controlador del Modal de Projectes
+    const modalController = {
+      modal: document.getElementById('project-modal'),
+      select: document.getElementById('category-select'),
+
+      open() {
+        // VERIFICACIÓ LOGIN: Si no està loguejat, obre el login
+        if (!authConfig.isLoggedIn) {
+          authController.open();
+          return;
+        }
+
+        // Rellenar el select con las categorías existentes
+        this.select.innerHTML = '';
+        Object.keys(projectsData).forEach(key => {
+          const option = document.createElement('option');
+          option.value = key;
+          option.textContent = projectsData[key].title;
+          this.select.appendChild(option);
+        });
+
+        // Si estamos viendo una categoría específica, pre-seleccionarla
+        if (router.currentView === 'detail' && router.currentCicle) {
+          this.select.value = router.currentCicle;
+        }
+
+        this.modal.classList.add('active');
+      },
+
+      close() {
+        this.modal.classList.remove('active');
+        document.getElementById('add-project-form').reset();
+      },
+
+      submit(event) {
+        event.preventDefault();
+
+        // Obtener valores
+        const category = this.select.value;
+        const title = document.getElementById('project-title').value;
+        const image = document.getElementById('project-image').value;
+        const descText = document.getElementById('project-desc').value;
+
+        // Convertir descripción en array de párrafos (por saltos de línea)
+        const content = descText.split('\n').filter(line => line.trim() !== '');
+
+        // Crear nuevo objeto
+        const newProject = {
+          id: Date.now().toString(), // ID único simple
+          title: title,
+          image: image,
+          images: [image], // Usamos la misma imagen para la galería por defecto
+          content: content
+        };
+
+        // Añadir al array
+        if (projectsData[category]) {
+          projectsData[category].projects.push(newProject);
+
+          // Feedback usuario (opcional)
+          alert('Projecte afegit correctament!');
+
+          // Cerrar modal
+          this.close();
+
+          // Refrescar vista si estamos en la misma categoría
+          if (router.currentView === 'detail' && router.currentCicle === category) {
+            router.renderDetail(category);
+          } else {
+            // Si estamos en home, o en otra categoría, podemos ir a la categoría modificada o quedarnos
+            // Aquí optamos por ir a ver el nuevo proyecto
+            router.navigateTo('detail', category);
+          }
+        }
+      }
+    };
+
+    // Cerrar modales al hacer click fuera
+    window.onclick = function (event) {
+      const pModal = document.getElementById('project-modal');
+      const lModal = document.getElementById('login-modal');
+
+      if (event.target == pModal) {
+        modalController.close();
+      }
+      if (event.target == lModal) {
+        authController.close();
+      }
+    }
+
+    // Inicializar
+    document.addEventListener('DOMContentLoaded', () => {
+      router.navigateTo('home');
+    });
+  </script>
+</body>
+
+</html>
